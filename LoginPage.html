@@ -1,0 +1,130 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Login page</title>
+    <link rel="stylesheet" href="css/style.css">
+
+    <!-- Google Fonts -->
+    <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@300&family=Ubuntu&display=swap" rel="stylesheet">
+
+    <style>
+        body {
+            margin: 0;
+            background-image: url('img/Login&SignUpBg.jpg');
+            background-size: cover;
+            background-position: center;
+            position: relative;
+            font-family: 'Montserrat', sans-serif;
+        }
+
+        .login-container {
+            position: relative;
+            z-index: 2;
+            text-align: left;
+            color: rgb(255, 255, 255);
+            padding: 20px;
+            margin-top: 50px;
+            max-width: 350px;
+            margin: 0 auto;
+            padding-top: 50px;
+        }
+        
+
+        .login-form {
+            max-width: 350px;
+            margin: 0 auto;
+        }
+
+        .form-group {
+            margin-bottom: 20px;
+        }
+
+        label {
+            display: block;
+            color: white;
+            margin-bottom: 5px;
+        }
+
+        input {
+            width: 100%;
+            padding: 10px;
+            box-sizing: border-box;
+            border: 1px solid #ccc;
+            border-radius: 5px;
+        }
+
+        button {
+            background-color: #68685e;
+            color: white;
+            padding: 10px 15px;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+        }
+
+        button:hover {
+            background-color: #1f211f;
+        }
+
+        p {
+            color: white;
+        }
+
+        hr {
+            border: 1px solid #ddd;
+            margin-top: 20px;
+        }
+
+        .error-message {
+            color: red;
+            margin-top: 10px;
+        }
+    </style>
+</head>
+<body>
+    <div class="login-container">
+        <form class="form" id="login-form" action="Dashboard.html" method="post"  onsubmit="return validateLogin()">
+            <h1>Login</h1>
+            <div class="form-group">
+                <label for="login-username">Username</label>
+                <input type="text" id="login-username" name="login-username" placeholder="Enter your username" required>
+            </div>
+            <div class="form-group">
+                <label for="login-password">Password</label>
+                <input type="password" id="login-password" name="login-password" placeholder="Enter your password" required>
+            </div>
+            <button type="submit">Login</button>
+            <p>Don't have an account? <a href="SignUp.html">Sign Up Here</a></p> 
+            <hr>
+            <div id="login-error" class="error-message"></div>
+        </form>
+    </div>
+
+    <script>
+        function validateLogin() {
+            var username = document.getElementById('login-username').value;
+            var password = document.getElementById('login-password').value;
+
+            if (username === "" || password === "") {
+                document.getElementById('login-error').innerText = "Username and password are required.";
+                return false;
+            }
+
+            // Retrieve saved username and password from local storage
+            var savedUsername = localStorage.getItem('username');
+            var savedPassword = localStorage.getItem('password');
+
+            if (username !== savedUsername || password !== savedPassword) {
+                document.getElementById('login-error').innerText = "Invalid username or password.";
+                return false;
+            }
+
+            alert("Login successful!");
+           
+        }
+    </script>
+    
+</body>
+</html>

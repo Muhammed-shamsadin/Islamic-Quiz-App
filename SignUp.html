@@ -1,0 +1,138 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Sign Up</title>
+    <link rel="stylesheet" href="css/style.css">
+    
+
+    <!-- Google Fonts -->
+    <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@300&family=Ubuntu&display=swap" rel="stylesheet">
+
+    <style>
+        body {
+            margin: 0;
+            background-image: url('img/Login&SignUpBg.jpg');
+            background-size: cover;
+            background-position: center;
+            position: relative;
+            font-family: 'Montserrat', sans-serif;
+        }
+
+        .signup-container {
+            position: relative;
+            text-align:left;
+            color: rgb(255, 255, 255);
+            padding: 20px;
+            margin-top: 50px; 
+        }
+
+        .signup-form {
+            max-width: 350px;
+            margin: 0 auto; 
+        }
+
+        .form-group {
+            margin-bottom: 20px;
+        }
+
+        label {
+            display: block;
+            color: white;
+            margin-bottom: 5px;
+        }
+
+        input {
+            width: 100%;
+            padding: 10px;
+            box-sizing: border-box;
+            border: 1px solid #ccc;
+            border-radius: 5px;
+        }
+
+        button {
+            background-color: #68685e;
+            color: white;
+            padding: 10px 15px;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+        }
+
+        button:hover {
+            background-color: #1f211f;
+        }
+
+        p {
+            color: white;
+        }
+
+        hr {
+            border: 1px solid #ddd;
+            margin-top: 20px;
+        }
+
+        .error-message {
+            color: red;
+            margin-top: 10px;
+        }
+    </style>
+</head>
+<body>
+    <div class="signup-container">
+        <form class="signup-form" onsubmit="return validateSignUp()">
+            <h1>Sign Up</h1>
+            <div class="form-group">
+                <label for="name">Full Name</label>
+                <input type="text" id="name" name="name" placeholder="Enter your name" required>
+            </div>
+            <div class="form-group">
+                <label for="email">Email</label>
+                <input type="email" id="email" name="email" placeholder="Enter your email" required>
+            </div>
+            <div class="form-group">
+                <label for="password">Password</label>
+                <input type="password" id="password" name="password" placeholder="Enter your password" required>
+            </div>
+            <div class="form-group">
+                <label for="confirm-password">Confirm Password</label>
+                <input type="password" id="confirm-password" name="confirm-password" placeholder="Confirm your password" required>
+            </div>
+        
+            <button type="submit">Sign Up</button>
+            <p>Already have an account? <a href="LoginPage.html">Login Here</a></p> 
+            <hr>
+            <div id="error-message" class="error-message"></div>
+        </form>
+    </div>
+
+    <script>
+        function validateSignUp() {
+            var email = document.getElementById('email').value;
+            var name = document.getElementById('name').value;
+            var password = document.getElementById('password').value;
+            var confirmPassword = document.getElementById('confirm-password').value;
+    
+            if (email === "" || name === "" || password === "" || confirmPassword === "") {
+                document.getElementById('error-message').innerText = "All fields are required.";
+                return false;
+            }
+    
+            if (password !== confirmPassword) {
+                document.getElementById('error-message').innerText = "Passwords do not match.";
+                return false;
+            }
+    
+            
+            localStorage.setItem('username', name);
+            localStorage.setItem('email', email);
+            localStorage.setItem('password', password);
+    
+            alert("Sign up successful! Data stored in local storage.");
+            return true;
+        }
+    </script>
+    
+</body>
+</html>
