@@ -10,12 +10,14 @@ function activeLink() {
 
 list.forEach((item) => item.addEventListener("mouseover", activeLink));
 
-//Menu Toggler
-let toggle = document.querySelectorAll(".toggle");
-let Navigation = document.querySelectorAll(".Navigation");
-let main = document.querySelectorAll(".main");
+// Menu Toggler
+let toggles = document.querySelectorAll(".toggle");
+let navigation = document.querySelector(".Navigation");
+let main = document.querySelector(".main");
 
-toggle.onclick = function() {
-    Navigation.classList.toggle("active");
-    main.classList.toggle("active");    
-}
+toggles.forEach(toggle => {
+    toggle.addEventListener("click", function () {
+        navigation.classList.toggle("active");
+        main.classList.toggle("active");
+    });
+});
